@@ -16,7 +16,7 @@ public class DataBaseHelper {
     }
 
     private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/app", "app", "pass");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data", "app", "pass");
     }
 
     @SneakyThrows
