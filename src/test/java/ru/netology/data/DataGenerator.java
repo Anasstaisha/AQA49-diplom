@@ -232,7 +232,7 @@ public class DataGenerator {
     @RequiredArgsConstructor
     public class CreditRequestEntityInfo {
         private String id;
-        private String bank_id;
+        private String bankId;
         private String created;
         private String status;
     }
@@ -242,7 +242,7 @@ public class DataGenerator {
     public class PaymentEntityInfo {
         private String id;
         private String quantity;
-        private String transaction_num;
+        private String transactionNum;
         private String created;
         private String status;
     }
@@ -251,8 +251,8 @@ public class DataGenerator {
     @RequiredArgsConstructor
     public class OrderEntityInfo {
         private String id;
-        private String credit_id;
+        private String creditId;
         private String created;
-        private String payment_id;
+        private String paymentId;
     }
 }

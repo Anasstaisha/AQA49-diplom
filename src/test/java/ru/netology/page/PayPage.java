@@ -13,9 +13,9 @@ public class PayPage {
     private SelenideElement hirePurchaseButton = $(byText("Купить в кредит"));
     private SelenideElement hirePurchaseHeading = $(byText("Кредит по данным карты"));
     private SelenideElement cardNumberField = $("input[maxlength=\"19\"]");
-    private SelenideElement monthField = $(byText("Месяц"));
-    private SelenideElement yearField = $(byText("Год"));
-    private SelenideElement ownerField = $(byText("Владелец"));
+    private SelenideElement monthField = $(byText("Месяц")).parent().$("input");
+    private SelenideElement yearField = $(byText("Год")).parent().$("input");
+    private SelenideElement ownerField = $(byText("Владелец")).parent().$("input");
     private SelenideElement cvvField = $("input[placeholder=\"999\"]");
     private SelenideElement continueButton = $(byText("Продолжить"));
     private SelenideElement cardNumberFieldErr = $x("//*[text()='Номер карты']/..//*[@class='input__sub']");

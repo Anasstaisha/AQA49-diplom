@@ -35,13 +35,17 @@ public class TourPurchaseTest {
         var payPage = new PayPage();
         payPage.byCreditPurchase();
         var info = getValidCardInfo();
+
         payPage.validPay(info);
         TimeUnit.SECONDS.sleep(10);
+
         var expected = "APPROVED";
-        var paymentInfo = getPayInformation();   /
+        var paymentInfo = getPayInformation();
         var orderInfo = getOrderInformation();
         assertEquals(expected, paymentInfo.getStatus());
-        assertEquals(paymentInfo.getTransaction_num(), orderInfo.getPayment_id());
+        assertEquals(paymentInfo.getTransactionNum(), orderInfo.getPaymentId());
+        TimeUnit.SECONDS.sleep(10);
         payPage.bankApproved();
+        TimeUnit.SECONDS.sleep(10);
     }
 }
