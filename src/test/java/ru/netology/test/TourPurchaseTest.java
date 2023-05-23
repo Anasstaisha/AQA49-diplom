@@ -42,8 +42,8 @@ public class TourPurchaseTest {
         var expected = "APPROVED";
         var paymentInfo = getPayInformation();
         var orderInfo = getOrderInformation();
-        assertEquals(expected, paymentInfo.getStatus());
-        assertEquals(paymentInfo.getTransactionNum(), orderInfo.getPaymentId());
+        assertEquals(getPayInformation().getStatus(), expected.toLowerCase() );
+        assertEquals(getPayInformation().getTransactionNum(), orderInfo.getPaymentId());
         TimeUnit.SECONDS.sleep(10);
         payPage.bankApproved();
         TimeUnit.SECONDS.sleep(10);

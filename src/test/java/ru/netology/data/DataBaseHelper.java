@@ -16,16 +16,17 @@ public class DataBaseHelper {
     }
 
     private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data", "app", "pass");
+        return DriverManager.getConnection(url, user, password);
     }
+    private static String url = "jdbc:postgresql://localhost:5432/data";
+    private static String user = "app";
+    private static String password = "pass";
 
     @SneakyThrows
     public static DataGenerator.PaymentEntityInfo getPayInformation() {
         var runner = new QueryRunner();
         var payInfo = "SELECT * FROM payment_entity ORDER BY created DESC LIMIT 1";
-        try (var conn = getConn()) {
-            return runner.query(conn, payInfo, new BeanHandler<>(DataGenerator.PaymentEntityInfo.class));
-        }
+            return runner.query(getConn(), payInfo, new BeanHandler<>(DataGenerator.PaymentEntityInfo.class));
     }
 
     @SneakyThrows
@@ -41,9 +42,8 @@ public class DataBaseHelper {
     public static DataGenerator.OrderEntityInfo getOrderInformation() {
         var runner = new QueryRunner();
         var orderInfo = "SELECT * FROM order_entity ORDER BY created DESC LIMIT 1";
-        try (var conn = getConn()) {
-            return runner.query(conn, orderInfo, new BeanHandler<>(DataGenerator.OrderEntityInfo.class));
-        }
+            return runner.query(getConn(), orderInfo, new BeanHandler<>(DataGenerator.OrderEntityInfo.class));
+
     }
 
     @SneakyThrows
