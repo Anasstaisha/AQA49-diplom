@@ -12,8 +12,6 @@ services:
      image: mysql:8.0
      ports:
        - '3306:3306'
-     volumes:
-           - ./data:/var/lib/postgresql/data
      environment:
        - MYSQL_RANDOM_ROOT_PASSWORD=yes
        - MYSQL_DATABASE=data

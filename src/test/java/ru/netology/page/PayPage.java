@@ -202,10 +202,10 @@ public class PayPage {
     }
 
     public void bankApproved() {
-        okMessage.shouldBe(visible, Duration.ofSeconds(15));
+        okMessage.shouldBe(visible, Duration.ofMillis(15000));
     }
 
     public void bankDeclined() {
-        errMessage.shouldBe(visible, Duration.ofSeconds(15));
+        errMessage.shouldBe(visible, Duration.ofMillis(15000));
     }
 }
