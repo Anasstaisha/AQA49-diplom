@@ -4,6 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataGenerator;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -31,12 +34,12 @@ public class PayPage {
 
     public void byCardPurchase() {
         purchaseButton.click();
-        purchaseHeading.shouldBe(Condition.visible);
+        purchaseHeading.shouldBe(visible);
     }
 
     public void byCreditPurchase() {
         hirePurchaseButton.click();
-        hirePurchaseHeading.shouldBe(Condition.visible);
+        hirePurchaseHeading.shouldBe(visible);
     }
 
     public void validPay(DataGenerator.CardInfo info) {
@@ -49,13 +52,12 @@ public class PayPage {
     }
 
     public void emptyFields() {
-        purchaseButton.click();
-        cardNumberFieldErr.shouldBe(Condition.visible);
-        monthFieldErr.shouldBe(Condition.visible);
-        yearFieldErr.shouldBe(Condition.visible);
-        ownerFieldErr.shouldBe(Condition.visible);
-        cvvFieldErr.shouldBe(Condition.visible);
         continueButton.click();
+        cardNumberFieldErr.shouldBe(visible);
+        monthFieldErr.shouldBe(visible);
+        yearFieldErr.shouldBe(visible);
+        ownerFieldErr.shouldBe(visible);
+        cvvFieldErr.shouldBe(visible);
     }
 
     private void cardNumberFieldErrorHidden() {
@@ -66,13 +68,13 @@ public class PayPage {
     }
 
     public void emptyCardNumberField(DataGenerator.CardInfo info) {
-
-        cardNumberFieldErr.shouldBe(Condition.visible);
+        cardNumberField.setValue(info.getCardNumber());
         monthField.setValue(info.getCardMonth());
         yearField.setValue(info.getCardYear());
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
+        cardNumberFieldErr.shouldBe(visible);
         cardNumberFieldErrorHidden();
     }
 
@@ -89,7 +91,7 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        monthFieldErr.shouldBe(Condition.visible);
+        monthFieldErr.shouldBe(visible);
         monthFieldErrorHidden();
     }
 
@@ -106,7 +108,7 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        yearFieldErr.shouldBe(Condition.visible);
+        yearFieldErr.shouldBe(visible);
         yearFieldErrorHidden();
     }
 
@@ -123,7 +125,7 @@ public class PayPage {
         yearField.setValue(info.getCardYear());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        ownerFieldErr.shouldBe(Condition.visible);
+        ownerFieldErr.shouldBe(visible);
         ownerFieldErrorHidden();
     }
 
@@ -140,7 +142,7 @@ public class PayPage {
         yearField.setValue(info.getCardYear());
         ownerField.setValue(info.getCardOwner());
         continueButton.click();
-        cvvFieldErr.shouldBe(Condition.visible);
+        cvvFieldErr.shouldBe(visible);
         cvcFieldErrorHidden();
     }
 
@@ -151,7 +153,7 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        cardNumberFieldErr.shouldBe(Condition.visible);
+        cardNumberFieldErr.shouldBe(visible);
         cardNumberFieldErrorHidden();
     }
 
@@ -162,7 +164,7 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        monthFieldErr.shouldBe(Condition.visible);
+        monthFieldErr.shouldBe(visible);
         monthFieldErrorHidden();
     }
 
@@ -173,7 +175,7 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        yearFieldErr.shouldBe(Condition.visible);
+        yearFieldErr.shouldBe(visible);
         yearFieldErrorHidden();
     }
 
@@ -184,7 +186,7 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        ownerFieldErr.shouldBe(Condition.visible);
+        ownerFieldErr.shouldBe(visible);
         ownerFieldErrorHidden();
     }
 
@@ -195,15 +197,15 @@ public class PayPage {
         ownerField.setValue(info.getCardOwner());
         cvvField.setValue(info.getCvvCode());
         continueButton.click();
-        cvvFieldErr.shouldBe(Condition.visible);
+        cvvFieldErr.shouldBe(visible);
         cvcFieldErrorHidden();
     }
 
     public void bankApproved() {
-        okMessage.shouldBe(Condition.visible);
+        okMessage.shouldBe(visible, Duration.ofSeconds(15));
     }
 
     public void bankDeclined() {
-        errMessage.shouldBe(Condition.visible);
+        errMessage.shouldBe(visible, Duration.ofSeconds(15));
     }
 }
