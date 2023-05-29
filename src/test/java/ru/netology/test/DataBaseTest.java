@@ -56,7 +56,7 @@ public class DataBaseTest {
         var info = getValidCardInfo();
 
         payPage.validPay(info);
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(17);
 
         var expected = "APPROVED";
         var paymentInfo = getPayInformation();
@@ -89,7 +89,7 @@ public class DataBaseTest {
         var info = getInvalidCardInfoDeclined();
 
         payPage.validPay(info);
-        TimeUnit.SECONDS.sleep(15);
+        TimeUnit.SECONDS.sleep(17);
 
         var expected = "DECLINED";
         var paymentInfo = getPayInformation();

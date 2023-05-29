@@ -19,7 +19,7 @@ public class DataBaseHelper {
         return DriverManager.getConnection(url, user, password);
     }
 
-    //для запуска СУБД PostrgeSQL убрать комментарий со строчки 23 и добавть на строчку 24
+    //для запуска СУБД PostrgeSQL убрать комментарий со строки 23 и добавть на строку 24
     //private static String url = "jdbc:postgresql://localhost:5432/data";
     private static String url = "jdbc:mysql://localhost:3306/data";
     private static String user = "app";

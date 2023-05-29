@@ -127,11 +127,11 @@ public class DataGenerator {
 
     @Value
     public static class CardInfo {
-        String cardNumber;
-        String cardMonth;
-        String cardYear;
-        String cardOwner;
-        String cvvCode;
+        String number;
+        String month;
+        String year;
+        String holder;
+        String cvc;
     }
 
     public static CardInfo getValidCardInfo() {

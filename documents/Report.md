@@ -24,14 +24,14 @@
 | Тесты страницы для оформления кредита на тур (TourCreditTest) | 70,8%  | 29,2%  |
 | Тесты страницы для покупки тура (TourPurchaseTest)            | 70,8%  | 29,2%  |
 | Тесты базы данных (DataBaseTest)                              | 50%    | 50%    |
-| API тесты (PayPageApiTest)                                    | 0%     | 100%   |
+| API тесты (PayPageApiTest)                                    | 100%   | 0%     |
 
 ### Что подтверждается отчетом Allure:
 ***
 
-![Скриншот](https://sun9-8.userapi.com/impg/GsD5BtdrnJDjuEFa_20DdFN-E0Z04BSn9nA5IQ/APQQNqWM7bw.jpg?size=1024x574&quality=96&sign=1b09a29999e1a5c6a49d73933a23c14c&type=album)
-![Скриншот](https://sun1-87.userapi.com/impg/hNO_8sEHDOAOF6KDfm9dSWdH9pDn4RpDixl_aA/wc8dP2Eo8Xo.jpg?size=844x971&quality=96&sign=02684e85e663c2cd2fbca8e9745ae451&type=album)
-![Скриншот](https://sun9-19.userapi.com/impg/uPO23ycd0sZNSUYKv9DB2_2Saujs7HJWk4x8Ig/s_TbsKxi7nA.jpg?size=798x840&quality=96&sign=9ec55fbcd67ed394e0cede078163f481&type=album)
+![Скриншот](https://sun1-86.userapi.com/impg/3FOceFm8c8oatcEtveLdagmnA92tgU18ZqaIQA/aTh4QStEAJo.jpg?size=1026x827&quality=96&sign=9db89847da9dce2ecac5077519bb53f0&type=album)
+![Скриншот](https://sun1-56.userapi.com/impg/X5yoJNVigtW2hdhr7D2wx5x2ikIf0JfJUzqTrw/lugUWFyDFo4.jpg?size=971x969&quality=96&sign=6afc1597e25d353117449bf235af9b9d&type=album)
+![Скриншот](https://sun9-80.userapi.com/impg/Dmqgy8hWmDNL8CcG6HJonpTtQv6xb12rjRirVg/StYi3Dy5GkM.jpg?size=967x806&quality=96&sign=743011cedfd8b0c9b4dcba54b8b676ef&type=album)
 
 ### Общие рекомендации
 ***

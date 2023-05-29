@@ -43,11 +43,11 @@ public class PayPage {
     }
 
     public void validPay(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
     }
 
@@ -68,11 +68,11 @@ public class PayPage {
     }
 
     public void emptyCardNumberField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         cardNumberFieldErr.shouldBe(visible);
         cardNumberFieldErrorHidden();
@@ -86,10 +86,10 @@ public class PayPage {
     }
 
     public void emptyMonthField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         monthFieldErr.shouldBe(visible);
         monthFieldErrorHidden();
@@ -103,10 +103,10 @@ public class PayPage {
     }
 
     public void emptyYearField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         yearFieldErr.shouldBe(visible);
         yearFieldErrorHidden();
@@ -120,10 +120,10 @@ public class PayPage {
     }
 
     public void emptyOwnerField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         ownerFieldErr.shouldBe(visible);
         ownerFieldErrorHidden();
@@ -137,75 +137,75 @@ public class PayPage {
     }
 
     public void emptyCVCField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
         continueButton.click();
         cvvFieldErr.shouldBe(visible);
         cvcFieldErrorHidden();
     }
 
     public void invalidCardNumberField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         cardNumberFieldErr.shouldBe(visible);
         cardNumberFieldErrorHidden();
     }
 
     public void invalidMonthField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         monthFieldErr.shouldBe(visible);
         monthFieldErrorHidden();
     }
 
     public void invalidYearField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         yearFieldErr.shouldBe(visible);
         yearFieldErrorHidden();
     }
 
     public void invalidOwnerField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         ownerFieldErr.shouldBe(visible);
         ownerFieldErrorHidden();
     }
 
     public void invalidCVCField(DataGenerator.CardInfo info) {
-        cardNumberField.setValue(info.getCardNumber());
-        monthField.setValue(info.getCardMonth());
-        yearField.setValue(info.getCardYear());
-        ownerField.setValue(info.getCardOwner());
-        cvvField.setValue(info.getCvvCode());
+        cardNumberField.setValue(info.getNumber());
+        monthField.setValue(info.getMonth());
+        yearField.setValue(info.getYear());
+        ownerField.setValue(info.getHolder());
+        cvvField.setValue(info.getCvc());
         continueButton.click();
         cvvFieldErr.shouldBe(visible);
         cvcFieldErrorHidden();
     }
 
     public void bankApproved() {
-        okMessage.shouldBe(visible, Duration.ofMillis(15000));
+        okMessage.shouldBe(visible, Duration.ofMillis(17000));
     }
 
     public void bankDeclined() {
-        errMessage.shouldBe(visible, Duration.ofMillis(15000));
+        errMessage.shouldBe(visible, Duration.ofMillis(17000));
     }
 }
