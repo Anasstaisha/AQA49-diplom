@@ -6,13 +6,7 @@ import org.junit.jupiter.api.*;
 import ru.netology.data.DataGenerator;
 import ru.netology.page.PayPage;
 
-import java.util.concurrent.TimeUnit;
-
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.netology.data.DataBaseHelper.*;
-import static ru.netology.data.DataGenerator.getInvalidCardInfoDeclined;
-import static ru.netology.data.DataGenerator.getValidCardInfo;
 
 public class TourPurchaseTest {
     @BeforeAll

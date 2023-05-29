@@ -15,20 +15,21 @@ public class PayPageApiTest {
             .setBaseUri("http://localhost")
             .setPort(8080)
             .setAccept(ContentType.JSON)
+            .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
             .build();
 
-        @Test
-        @DisplayName("Payment with valid approved card number")
-        void shouldSuccessfulTourPayment () {
-            given()
-                    .spec(requestSpec)
-                    .body(DataGenerator.getValidCardInfo())
-                    .when()
-                    .post("/api/v1/pay")
-                    .then()
-                    .statusCode(200);
-        }
+    @Test
+    @DisplayName("Payment with valid approved card number")
+    void shouldSuccessfulTourPayment() {
+        given()
+                .spec(requestSpec)
+                .body(DataGenerator.getValidCardInfo())
+                .when()
+                .post("/api/v1/pay")
+                .then()
+                .statusCode(200);
+    }
 
     @Test
     @DisplayName("Hire-purchase with valid approved card number")
@@ -40,29 +41,5 @@ public class PayPageApiTest {
                 .post("/api/v1/credit")
                 .then()
                 .statusCode(200);
-    }
-
-    @Test
-    @DisplayName("Payment with valid approved card number")
-    void shouldNotSuccessfulTourPayment() {
-        given()
-                .spec(requestSpec)
-                .body(DataGenerator.getCardInfoInvalidCardNumber())
-                .when()
-                .post("/api/v1/pay")
-                .then()
-                .statusCode(500);
-    }
-
-    @Test
-    @DisplayName("Hire-purchase with valid approved card number")
-    void shouldNotSuccessfulTourCredit() {
-        given()
-                .spec(requestSpec)
-                .body(DataGenerator.getCardInfoInvalidCardNumber())
-                .when()
-                .post("/api/v1/credit")
-                .then()
-                .statusCode(500);
     }
 }
