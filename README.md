@@ -17,8 +17,8 @@
     * командой "java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/data" -jar ./artifacts/aqa-shop.jar" для MySQL;
     * командой "java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/data" -jar ./artifacts/aqa-shop.jar" для PostgreSQL.
 4. Запустите тесты, открыв новую сессию терминала командой:
-    * "/gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/data"", если раннее запускали SUT для MySQL;
-    * "/gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/data"", если раннее запускали SUT для PostgreSQL.
+    * "./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/data"", если раннее запускали SUT для MySQL;
+    * "./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/data"", если раннее запускали SUT для PostgreSQL.
 5. Запустите команду ".\gradlew allureserve" для просмотра Allure отчетов;
 6. Нажмите комбинацию "Ctrl+C", ответив на последующий запрос "y" для остановки Allure;
 7. Закройте терминал, в котором запускался SUT и выполните шаги 3-6 для проверки второй базы данных;
