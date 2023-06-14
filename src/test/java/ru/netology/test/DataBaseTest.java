@@ -3,15 +3,12 @@ package ru.netology.test;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
+import ru.netology.data.DataGenerator;
 import ru.netology.page.PayPage;
-
-import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.data.DataBaseHelper.*;
-import static ru.netology.data.DataGenerator.getInvalidCardInfoDeclined;
-import static ru.netology.data.DataGenerator.getValidCardInfo;
 
 public class DataBaseTest {
 
@@ -34,66 +31,62 @@ public class DataBaseTest {
     //Happy path tests for purchase by card and hire-purchase
     @Test
     @DisplayName("Hire-purchase by valid card")
-    public void shouldCreditValidCard() throws InterruptedException {
-        var payPage = new PayPage();
+    public void shouldCreditValidCard() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = getValidCardInfo();
+        DataGenerator.CardInfo validCard = DataGenerator.getValidCardInfo();
 
-        payPage.validPay(info);
-        TimeUnit.SECONDS.sleep(17);
-
-        var expected = "APPROVED";
-        var paymentInfo = getCreditReqInformation();
-        assertEquals(paymentInfo, expected);
+        payPage.validPay(validCard);
         payPage.bankApproved();
+
+        String expected = "APPROVED";
+        String actual = getCreditReqInformation();
+        assertEquals(actual, expected);
     }
 
     @Test
     @DisplayName("Purchase by valid card")
-    public void shouldPaymentByValidCard() throws InterruptedException {
-        var payPage = new PayPage();
+    public void shouldPaymentByValidCard() {
+        PayPage payPage = new PayPage();
         payPage.byCardPurchase();
-        var info = getValidCardInfo();
+        DataGenerator.CardInfo validCard = DataGenerator.getValidCardInfo();
 
-        payPage.validPay(info);
-        TimeUnit.SECONDS.sleep(17);
-
-        var expected = "APPROVED";
-        var paymentInfo = getPayInformation();
-        assertEquals(paymentInfo, expected);
+        payPage.validPay(validCard);
         payPage.bankApproved();
+
+        String expected = "APPROVED";
+        String actual = getPayInformation();
+        assertEquals(actual, expected);
     }
 
     //Sad path tests for purchase by card and hire-purchase
     @Test
     @DisplayName("Hire-purchase by invalid card")
-    public void shouldNotCreditByInvalidCard() throws InterruptedException {
-        var payPage = new PayPage();
+    public void shouldNotCreditByInvalidCard() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = getInvalidCardInfoDeclined();
+        DataGenerator.CardInfo validCard = DataGenerator.getInvalidCardInfoDeclined();
 
-        payPage.validPay(info);
-        TimeUnit.SECONDS.sleep(17);
-
-        var expected = "DECLINED";
-        var paymentInfo = getCreditReqInformation();
-        assertEquals(paymentInfo, expected);
+        payPage.validPay(validCard);
         payPage.bankDeclined();
+
+        String expected = "DECLINED";
+        String actual = getCreditReqInformation();
+        assertEquals(actual, expected);
     }
 
     @Test
     @DisplayName("Purchase by invalid card")
-    public void shouldNotPaymentInvalidCard() throws InterruptedException {
-        var payPage = new PayPage();
+    public void shouldNotPaymentInvalidCard() {
+        PayPage payPage = new PayPage();
         payPage.byCardPurchase();
-        var info = getInvalidCardInfoDeclined();
+        DataGenerator.CardInfo validCard = DataGenerator.getInvalidCardInfoDeclined();
 
-        payPage.validPay(info);
-        TimeUnit.SECONDS.sleep(17);
-
-        var expected = "DECLINED";
-        var paymentInfo = getPayInformation();
-        assertEquals(paymentInfo, expected);
+        payPage.validPay(validCard);
         payPage.bankDeclined();
+
+        String expected = "DECLINED";
+        String actual = getPayInformation();
+        assertEquals(actual, expected);
     }
 }

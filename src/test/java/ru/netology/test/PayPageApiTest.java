@@ -42,4 +42,28 @@ public class PayPageApiTest {
                 .then()
                 .statusCode(200);
     }
+
+    @Test
+    @DisplayName("Payment with valid approved card number")
+    void shouldUnsuccessfulTourPayment() {
+        given()
+                .spec(requestSpec)
+                .body(DataGenerator.getInvalidCardInfoDeclined())
+                .when()
+                .post("/api/v1/pay")
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    @DisplayName("Hire-purchase with valid approved card number")
+    void shouldUnsuccessfulTourCredit() {
+        given()
+                .spec(requestSpec)
+                .body(DataGenerator.getInvalidCardInfoDeclined())
+                .when()
+                .post("/api/v1/credit")
+                .then()
+                .statusCode(200);
+    }
 }

@@ -26,217 +26,242 @@ public class TourCreditTest {
     }
 
     @Test
-    @DisplayName("Hire-purchase with invalid card number field")
-    public void shouldNotCreditWithInvalidCardNumber() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with invalid card number field")
+    public void shouldNotPaymentWithInvalidCardNumber() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidCardNumber();
-        payPage.invalidCardNumberField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidCardNumber();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with empty card number field")
-    public void shouldNotCreditWithoutCardNumber() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with empty card number field")
+    public void shouldNotPaymentWithoutCardNumber() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidWithoutCardNumber();
-        payPage.emptyCardNumberField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidWithoutCardNumber();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with zero month field")
-    public void shouldNotCreditWithInvalidMinMonth() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with zero month field")
+    public void shouldNotPaymentWithInvalidMinMonth() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidZeroMonth();
-        payPage.invalidMonthField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidZeroMonth();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with invalid month field")
-    public void shouldNotCreditWithInvalidMaxMonth() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with invalid month field")
+    public void shouldNotPaymentWithInvalidMaxMonth() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidMaxMonth();
-        payPage.invalidMonthField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidMaxMonth();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверно указан срок действия карты");
     }
 
     @Test
-    @DisplayName("Hire-purchase with invalid previous month field")
-    public void shouldNotCreditWithInvalidPrevMonth() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with invalid previous month field")
+    public void shouldNotPaymentWithInvalidPrevMonth() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidPrevMonth();
-        payPage.invalidMonthField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidPrevMonth();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверно указан срок действия карты");
     }
 
     @Test
-    @DisplayName("Hire-purchase with valid previous month field")
-    public void shouldCreditWithValidPrevMonth() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with valid previous month field")
+    public void shouldPaymentWithValidPrevMonth() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoValidPrevMonth();
-        payPage.validPay(info);
+        DataGenerator.CardInfo validCard = DataGenerator.getCardInfoValidPrevMonth();
+        payPage.validPay(validCard);
+        payPage.bankApproved();
     }
 
     @Test
-    @DisplayName("Hire-purchase with valid next month field")
-    public void shouldCreditWithValidNextMonth() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with valid next month field")
+    public void shouldPaymentWithValidNextMonth() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoValidNextMonth();
-        payPage.validPay(info);
+        DataGenerator.CardInfo validCard = DataGenerator.getCardInfoValidNextMonth();
+        payPage.validPay(validCard);
+        payPage.bankApproved();
     }
 
     @Test
-    @DisplayName("Hire-purchase with empty month field")
-    public void shouldNotCreditWithoutMonth() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with empty month field")
+    public void shouldNotPaymentWithoutMonth() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidWithoutMonth();
-        payPage.emptyMonthField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidWithoutMonth();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with zero year field")
-    public void shouldNotCreditWithInvalidMinYear() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with zero year field")
+    public void shouldNotPaymentWithInvalidMinYear() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidZeroYear();
-        payPage.invalidYearField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidZeroYear();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Истёк срок действия карты");
     }
 
     @Test
-    @DisplayName("Hire-purchase with previous year field")
-    public void shouldNotCreditWithPrevYear() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with previous year field")
+    public void shouldNotPaymentWithPrevYear() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidPrevYear();
-        payPage.invalidYearField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidPrevYear();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Истёк срок действия карты");
     }
 
     @Test
-    @DisplayName("Hire-purchase with valid next year field")
-    public void shouldCreditWithValidNextYear() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with valid next year field")
+    public void shouldPaymentWithValidNextYear() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoValidNextMonth();
-        payPage.validPay(info);
+        DataGenerator.CardInfo validCard = DataGenerator.getCardInfoValidNextYear();
+        payPage.validPay(validCard);
+        payPage.bankApproved();
     }
 
     @Test
-    @DisplayName("Hire-purchase with valid future year field")
-    public void shouldCreditWithValidFutureYear() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with valid future year field")
+    public void shouldPaymentWithValidFutureYear() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoValidFutureYear();
-        payPage.validPay(info);
+        DataGenerator.CardInfo validCard = DataGenerator.getCardInfoValidFutureYear();
+        payPage.validPay(validCard);
+        payPage.bankApproved();
     }
 
     @Test
-    @DisplayName("Hire-purchase with invalid future year field")
-    public void shouldNotCreditWithInvalidFutureYear() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with invalid future year field")
+    public void shouldNotPaymentWithInvalidFutureYear() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidFutureYear();
-        payPage.invalidYearField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidFutureYear();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверно указан срок действия карты");
     }
 
     @Test
-    @DisplayName("Hire-purchase with empty year field")
-    public void shouldNotCreditWithoutYear() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with empty year field")
+    public void shouldNotPaymentWithoutYear() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidWithoutYear();
-        payPage.emptyYearField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidWithoutYear();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase without owner's first name in the cardholder field")
-    public void shouldNotCreditWithoutOwnersFirstName() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase without owner's last name in the cardholder field")
+    public void shouldNotPaymentWithoutOwnersLastName() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidOwnersFirstName();
-        payPage.invalidOwnerField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidOwnersFirstName();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase without owner's last name in the cardholder field")
-    public void shouldNotCreditWithoutOwnersLastName() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase without owner's first name in the cardholder field")
+    public void shouldNotPaymentWithoutOwnersFirstName() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidOwnersLastName();
-        payPage.invalidOwnerField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidOwnersLastName();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with cyrillic in the cardholder field")
-    public void shouldNotCreditWithInvalidOwnersName() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with cyrillic in the cardholder field")
+    public void shouldNotPaymentWithInvalidOwnersName() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidOwner();
-        payPage.invalidOwnerField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidOwner();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with symbols in the cardholder field")
-    public void shouldNotCreditWithoutSymbolsInsteadOfName() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with symbols in the cardholder field")
+    public void shouldNotPaymentWithoutSymbolsInsteadOfName() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidOwnerWithSymbols();
-        payPage.invalidOwnerField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidOwnerWithSymbols();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with numbers in the cardholder field")
-    public void shouldNotCreditWithNumbersInsteadOfName() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with numbers in the cardholder field")
+    public void shouldNotPaymentWithNumbersInsteadOfName() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidOwnerWithNumbers();
-        payPage.invalidOwnerField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidOwnerWithNumbers();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with empty cardholder field")
-    public void shouldNotCreditWithoutOwnersName() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with empty cardholder field")
+    public void shouldNotPaymentWithoutOwnersName() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidWithoutOwner();
-        payPage.invalidOwnerField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidWithoutOwner();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Поле обязательно для заполнения");
     }
 
     @Test
-    @DisplayName("Hire-purchase with zero CVC/CVV field")
-    public void shouldNotCreditWithZeroCode() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with zero CVC/CVV field")
+    public void shouldNotPaymentWithZeroCode() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoZeroInvalidCode();
-        payPage.invalidCVCField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoZeroInvalidCode();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with partially filled CVC/CVV field")
-    public void shouldNotCreditWithInvalidCode() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with partially filled CVC/CVV field")
+    public void shouldNotPaymentWithInvalidCode() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidCode();
-        payPage.invalidCVCField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidCode();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 
     @Test
-    @DisplayName("Hire-purchase with empty CVC/CVV field")
-    public void shouldNotCreditWithoutCode() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with empty CVC/CVV field")
+    public void shouldNotPaymentWithoutCode() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        var info = DataGenerator.getCardInfoInvalidWithoutCode();
-        payPage.emptyCVCField(info);
+        DataGenerator.CardInfo invalidCard = DataGenerator.getCardInfoInvalidWithoutCode();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Поле обязательно для заполнения");
     }
 
     @Test
-    @DisplayName("Hire-purchase with all empty fields")
-    public void shouldNotCreditWithoutInfo() {
-        var payPage = new PayPage();
+    @DisplayName("Purchase with all empty fields")
+    public void shouldNotPaymentWithoutInfo() {
+        PayPage payPage = new PayPage();
         payPage.byCreditPurchase();
-        payPage.emptyFields();
+        DataGenerator.CardInfo invalidCard = DataGenerator.getEmptyFields();
+        payPage.validPay(invalidCard);
+        payPage.shouldBeError("Неверный формат");
     }
 }

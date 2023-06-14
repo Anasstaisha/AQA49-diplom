@@ -5,8 +5,6 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-
 import java.sql.DriverManager;
 
 public class DataBaseHelper {
@@ -15,32 +13,25 @@ public class DataBaseHelper {
     private DataBaseHelper() {
     }
 
-    private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
+    @SneakyThrows
+    private static Connection getConn() {
+        //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data", "app", "pass");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/data", "app", "pass");
     }
-
-    //для запуска СУБД PostrgeSQL убрать комментарий со строки 23 и добавть на строку 24
-    //private static String url = "jdbc:postgresql://localhost:5432/data";
-    private static String url = "jdbc:mysql://localhost:3306/data";
-    private static String user = "app";
-    private static String password = "pass";
 
     @SneakyThrows
     public static String getPayInformation() {
-        var runner = new QueryRunner();
-        var payInfo = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
-        try (var conn = getConn()) {
-            return runner.query(conn, payInfo, new ScalarHandler<String>());
-        }
+        runner = new QueryRunner();
+        String payInfo = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+            return runner.query(getConn(), payInfo, new ScalarHandler<String>());
+
     }
 
     @SneakyThrows
     public static String getCreditReqInformation() {
-        var runner = new QueryRunner();
-        var creditInfo = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
-        try (var conn = getConn()) {
-            return runner.query(conn, creditInfo, new ScalarHandler<String>());
-        }
+        runner = new QueryRunner();
+        String creditInfo = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+            return runner.query(getConn(), creditInfo, new ScalarHandler<String>());
     }
 
     @SneakyThrows

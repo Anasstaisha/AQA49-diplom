@@ -24,14 +24,22 @@ public class DataGenerator {
         return declinedCard;
     }
 
-    public static String generateValidMonth() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
-    }
 
-    public static String generateRandomMonth(){
-        final String[] numbers = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-        var month = (int)Math.floor(Math.random() * numbers.length);
-        return numbers[month];
+    public static String generateMonth(int mm) {
+        int value = mm;
+        if (value == 0) { // текущий месяц
+            return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
+        } else if (value == -1) { // предыдущий месяц
+            return LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
+        } else if (value == 1) { // следующий месяц
+            return LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
+        } else if (value == 2) { // рандомный месяц
+            final String[] numbers = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+            int month = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[month];
+        } else {
+            return null;
+        }
     }
 
     public static String getMinInvalidMonth() {
@@ -42,32 +50,28 @@ public class DataGenerator {
         return "13";
     }
 
-    public static String generatePrevMonth() {
-        return LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
+    public static String generateYear(int yy) {
+        int value = yy;
+        if (value == 0) { // текущий год
+            return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
+        } else if (value == -1) { // предыдущий год
+            final String[] numbers = new String[]{"22", "21", "20", "19", "18", "17"};
+            int year = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[year];
+        } else if (value == 1) { // следующий год
+            return LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy"));
+        } else if (value == 2) { // будущий валидный год
+            final String[] numbers = new String[]{"24", "25", "26", "27", "28"};
+            int year = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[year];
+        } else if (value == 3) { // будущий невалидный год
+            final String[] numbers = new String[]{"29", "30", "31", "32", "33"};
+            int year = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[year];
+        } else {
+            return null;
+        }
     }
-
-    public static String generateNextMonth() {
-        return LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
-    }
-
-    public static String generateValidYear() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
-    }
-
-    public static String getPrevYear() {
-        final String[] numbers = new String[]{"22", "31", "20", "19", "18", "17"};
-        var year = (int) Math.floor(Math.random() * numbers.length);
-        return numbers[year];
-    }
-
-    public static String generateNextYear() {
-        return LocalDate.now().plusYears(1).format(DateTimeFormatter.ofPattern("yy"));
-    }
-
-    public static String generateValidFutureYear() {
-        return LocalDate.now().plusYears(5).format(DateTimeFormatter.ofPattern("yy"));
-    }
-
 
     public static String getInvalidZeroYear() {
         return "00";
@@ -75,54 +79,36 @@ public class DataGenerator {
 
     public static String generateValidOwner(String locale) {
         Faker faker = new Faker(new Locale(locale));
-        faker.number().digits(3);
         return faker.name().firstName() + " " + faker.name().lastName();
     }
 
-    public static String generateInvalidOwnerLastName(String locale) {
+    public static String generateInvalidOwnerLastNameWithoutFirstName(String locale) {
         Faker faker = new Faker(new Locale(locale));
-        faker.number().digits(1);
-        return faker.name().firstName();
-    }
-
-    public static String generateInvalidOwnerFirstName(String locale) {
-        Faker faker = new Faker(new Locale(locale));
-        faker.number().digits(1);
         return faker.name().lastName();
     }
 
-    public static String generateValidCvvCode() {
-        Faker faker = new Faker();
-        return faker.number().digits(3);
-    }
-
-    public static String generateInvalidCvvCode() {
-        Faker faker = new Faker();
-        return faker.number().digits(2);
+    public static String generateInvalidOwnerFirstNameWithoutLastName(String locale) {
+        Faker faker = new Faker(new Locale(locale));
+        return faker.name().firstName();
     }
 
     public static String getInvalidZeroCvvCode() {
         return "000";
     }
 
-    public static String generateNumbers() {
+    public static String generateNumbers(int count) {
         Faker faker = new Faker();
-        return faker.number().digits(14);
+        int number = count;
+        return faker.number().digits(number);
     }
 
     private static String getSpecialSymbols() {
         Random random = new Random();
         final String[] specialSymbols = new String[]{"!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+",
                 ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"};
-        var fistSymbol = specialSymbols[random.nextInt(31)];
-        var secondSymbol = specialSymbols[random.nextInt(31)];
+        String fistSymbol = specialSymbols[random.nextInt(31)];
+        String secondSymbol = specialSymbols[random.nextInt(31)];
         return fistSymbol + secondSymbol;
-    }
-
-    private static String getOverYear() {
-        final String[] numbers = new String[]{"29", "30", "31", "32", "33", "34", "35", "36"};
-        var year = (int)Math.floor(Math.random() * numbers.length);
-        return numbers[year];
     }
 
     @Value
@@ -135,98 +121,107 @@ public class DataGenerator {
     }
 
     public static CardInfo getValidCardInfo() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateValidOwner("en"), generateNumbers(3));
+    }
+
+    public static CardInfo getEmptyFields() {
+        return new CardInfo("", "", "", "", "");
     }
 
     public static CardInfo getInvalidCardInfoDeclined() {
-        return new CardInfo(getDeclinedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getDeclinedCardNumber(), generateMonth(0), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidWithoutCardNumber() {
-        return new CardInfo(" ", generateValidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(" ", generateMonth(0), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidCardNumber() {
-        return new CardInfo(generateNumbers(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(generateNumbers(10), generateMonth(0), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidZeroMonth() {
-        return new CardInfo(getApprovedCardNumber(), getMinInvalidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), getMinInvalidMonth(), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidMaxMonth() {
-        return new CardInfo(getApprovedCardNumber(), getMaxInvalidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), getMaxInvalidMonth(), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidWithoutMonth() {
-        return new CardInfo(getApprovedCardNumber(), " ", generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), " ", generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidPrevMonth() {
-        return new CardInfo(getApprovedCardNumber(), generatePrevMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(-1), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoValidPrevMonth() {
-        return new CardInfo(getApprovedCardNumber(), generatePrevMonth(), generateNextYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(-1), generateYear(1), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoValidNextMonth() {
-        return new CardInfo(getApprovedCardNumber(), generateNextMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(1), generateYear(0), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidZeroYear() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), getInvalidZeroYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(1), getInvalidZeroYear(), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidPrevYear() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), getPrevYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(-1), generateValidOwner("en"), generateNumbers(3));
+    }
+
+    public static CardInfo getCardInfoValidNextYear() {
+        return new CardInfo(getApprovedCardNumber(), generateMonth(2), generateYear(1), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoValidFutureYear() {
-        return new CardInfo(getApprovedCardNumber(), generateRandomMonth(), generateValidFutureYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(2), generateYear(2), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidFutureYear() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), getOverYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(2), generateYear(3), generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidWithoutYear() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), "", generateValidOwner("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidOwnersFirstName() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateInvalidOwnerFirstName("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateInvalidOwnerLastNameWithoutFirstName("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidOwnersLastName() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateInvalidOwnerLastName("en"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateInvalidOwnerFirstNameWithoutLastName("en"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidWithoutOwner() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), " ", generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), " ", generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidOwner() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("ru"), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateValidOwner("ru"), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidOwnerWithSymbols() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), getSpecialSymbols(), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), getSpecialSymbols(), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoInvalidOwnerWithNumbers() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateNumbers(), generateValidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateNumbers(12), generateNumbers(3));
     }
 
     public static CardInfo getCardInfoZeroInvalidCode() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), getInvalidZeroCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateValidOwner("en"), getInvalidZeroCvvCode());
     }
 
     public static CardInfo getCardInfoInvalidCode() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), generateInvalidCvvCode());
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateValidOwner("en"), generateNumbers(2));
     }
 
     public static CardInfo getCardInfoInvalidWithoutCode() {
-        return new CardInfo(getApprovedCardNumber(), generateValidMonth(), generateValidYear(), generateValidOwner("en"), "");
+        return new CardInfo(getApprovedCardNumber(), generateMonth(0), generateYear(0), generateValidOwner("en"), "");
     }
 }
+
