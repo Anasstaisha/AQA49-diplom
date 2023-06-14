@@ -15,8 +15,7 @@ public class DataBaseHelper {
 
     @SneakyThrows
     private static Connection getConn() {
-        //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/data", "app", "pass");
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/data", "app", "pass");
+        return DriverManager.getConnection(System.getProperty("source"), System.getProperty("username"), System.getProperty("password"));
     }
 
     @SneakyThrows
