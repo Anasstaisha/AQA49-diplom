@@ -24,21 +24,14 @@ public class DataGenerator {
         return declinedCard;
     }
 
-
-    public static String generateMonth(int mm) {
-        int value = mm;
-        if (value == 0) { // текущий месяц
-            return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
-        } else if (value == -1) { // предыдущий месяц
-            return LocalDate.now().minusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
-        } else if (value == 1) { // следующий месяц
-            return LocalDate.now().plusMonths(1).format(DateTimeFormatter.ofPattern("MM"));
-        } else if (value == 2) { // рандомный месяц
+    public static String generateMonth(int month) {
+        int amount = month;
+        if (amount == 2) { // рандомный месяц
             final String[] numbers = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-            int month = (int) Math.floor(Math.random() * numbers.length);
-            return numbers[month];
+            int mm = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[mm];
         } else {
-            return null;
+            return LocalDate.now().plusMonths(amount).format(DateTimeFormatter.ofPattern("MM"));
         }
     }
 
@@ -50,7 +43,22 @@ public class DataGenerator {
         return "13";
     }
 
-    public static String generateYear(int yy) {
+    public static String generateYear(int year) {
+        int amount = year;
+        if (amount == 2) { // будущий валидный год
+            final String[] numbers = new String[]{"24", "25", "26", "27", "28"};
+            int yy = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[yy];
+        } else if (amount == 3) { // будущий невалидный год
+            final String[] numbers = new String[]{"29", "30", "31", "32", "33"};
+            int yy = (int) Math.floor(Math.random() * numbers.length);
+            return numbers[yy];
+        } else {
+            return LocalDate.now().plusYears(amount).format(DateTimeFormatter.ofPattern("yy"));
+        }
+    }
+
+    /*public static String generateYear(int yy) { // Альтернативная реализация метода
         int value = yy;
         if (value == 0) { // текущий год
             return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
@@ -71,7 +79,7 @@ public class DataGenerator {
         } else {
             return null;
         }
-    }
+    }*/
 
     public static String getInvalidZeroYear() {
         return "00";

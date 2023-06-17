@@ -29,9 +29,10 @@
 ### Что подтверждается отчетом Allure:
 ***
 
-![Скриншот](https://sun1-86.userapi.com/impg/3FOceFm8c8oatcEtveLdagmnA92tgU18ZqaIQA/aTh4QStEAJo.jpg?size=1026x827&quality=96&sign=9db89847da9dce2ecac5077519bb53f0&type=album)
-![Скриншот](https://sun1-56.userapi.com/impg/X5yoJNVigtW2hdhr7D2wx5x2ikIf0JfJUzqTrw/lugUWFyDFo4.jpg?size=971x969&quality=96&sign=6afc1597e25d353117449bf235af9b9d&type=album)
-![Скриншот](https://sun9-80.userapi.com/impg/Dmqgy8hWmDNL8CcG6HJonpTtQv6xb12rjRirVg/StYi3Dy5GkM.jpg?size=967x806&quality=96&sign=743011cedfd8b0c9b4dcba54b8b676ef&type=album)
+![Скриншот](https://sun1-30.userapi.com/impg/GPGjMCq0g7kJcgVXDJErnfCgM_B8dvN6O6-M7w/ORthE9QSZHw.jpg?size=1019x766&quality=96&sign=1e2239962231b70093a16ad9ff0cf798&type=album)
+![Скриншот](https://sun9-45.userapi.com/impg/S_RQAXuchWWx1XItxrM4j6lRiKNo2WoQd2o10A/COvZrGt3el8.jpg?size=1021x959&quality=96&sign=cc59d36911bb7f5082a0654d878177bc&type=album)
+![Скриншот](https://sun1-27.userapi.com/impg/eDFtiQH7E8KH50TGtdNW9Ou4TsROxGxswpvm-g/_nKz2_LFIuk.jpg?size=1012x419&quality=96&sign=c71fbd5b24b0d8d295c113078b807ab6&type=album)
+![Скриншот](https://sun9-60.userapi.com/impg/9U8Zv0jRaj3S1xcNm9rS8E6Bkv-YvySsximIsQ/youBcsXzZoU.jpg?size=1018x969&quality=96&sign=28ab49f5c1aab0e0ec2490684a948657&type=album)
 
 ### Общие рекомендации
 ***
